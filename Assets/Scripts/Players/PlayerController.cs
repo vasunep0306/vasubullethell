@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float dashSpeed;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float dashTime;
+    [SerializeField] private TrailRenderer myTrailRender;
 
     private PlayerControls playerControls;
 
@@ -86,6 +87,7 @@ public class PlayerController : MonoBehaviour
     private void Dash()
     {
         moveSpeed *= dashSpeed;
+        myTrailRender.emitting = true;
         StartCoroutine(EndDashRoutine());
     }
 
@@ -93,5 +95,6 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(dashTime);
         moveSpeed /= dashSpeed;
+        myTrailRender.emitting = false;
     }
 }
