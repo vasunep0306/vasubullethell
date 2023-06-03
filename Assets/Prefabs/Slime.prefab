@@ -38,7 +38,7 @@ Transform:
   m_Children:
   - {fileID: 4008289575445927854}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6807254264472826088
 SpriteRenderer:
@@ -217,6 +217,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab63c1e690c9ff4982bb147cfd10450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whiteFlashMat: {fileID: 2100000, guid: 2f4af8f958b97b6498ce79aeeacecd36, type: 2}
+  restoreDefaultMatTime: 0.1
 --- !u!1 &2716140632584462087
 GameObject:
   m_ObjectHideFlags: 0
