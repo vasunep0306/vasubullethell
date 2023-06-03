@@ -13,7 +13,22 @@ public class Knockback : MonoBehaviour
 
     public void GetKnockBack(Transform damageSource, float knockBackThrust)
     {
-        Vector2 difference = (transform.position - damageSource.position).normalized * knockBackThrust * rb.mass;
-        rb.AddForce(difference, ForceMode2D.Impulse);
+        // Call the CalculateKnockBackForce method and multiply the result by the rb mass
+        Vector2 force = CalculateKnockBackForce(damageSource, knockBackThrust) * rb.mass;
+
+        // Add the force to the rb as an impulse
+        rb.AddForce(force, ForceMode2D.Impulse);
+    }
+
+    private Vector2 CalculateKnockBackForce(Transform damageSource, float knockBackThrust)
+    {
+        // Calculate the difference vector between the transform position and the damage source position
+        Vector2 difference = transform.position - damageSource.position;
+
+        // Normalize the difference vector and multiply it by the knock back thrust
+        Vector2 force = difference.normalized * knockBackThrust;
+
+        // Return the force vector
+        return force;
     }
 }
