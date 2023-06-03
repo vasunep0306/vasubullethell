@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private int startingHealth = 3;
+    [SerializeField] private GameObject deathVFXPrefab;
 
 
     private int currentHealth;
@@ -41,6 +42,7 @@ public class EnemyHealth : MonoBehaviour
         // Check if current health is zero or less
         if (currentHealth <= 0)
         {
+            Instantiate(deathVFXPrefab, transform.position, Quaternion.identity);
             // Destroy the game object
             Destroy(gameObject);
         }
