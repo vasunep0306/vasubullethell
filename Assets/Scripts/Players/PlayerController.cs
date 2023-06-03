@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerController Instance;
 
     [SerializeField] private float dashSpeed;
+    [SerializeField] private float dashCD = .25f;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float dashTime;
     [SerializeField] private TrailRenderer myTrailRender;
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer mySpriteRenderer;
 
     private bool facingLeft = false;
+    private bool isDashing = false;
     
 
     private void Awake()
@@ -86,9 +88,13 @@ public class PlayerController : MonoBehaviour
 
     private void Dash()
     {
-        moveSpeed *= dashSpeed;
-        myTrailRender.emitting = true;
-        StartCoroutine(EndDashRoutine());
+        if (!isDashing)
+        {
+            isDashing = true;
+            moveSpeed *= dashSpeed;
+            myTrailRender.emitting = true;
+            StartCoroutine(EndDashRoutine());
+        }
     }
 
     private IEnumerator EndDashRoutine()
@@ -96,5 +102,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(dashTime);
         moveSpeed /= dashSpeed;
         myTrailRender.emitting = false;
+        yield return new WaitForSeconds(dashCD);
+        isDashing = false;
     }
 }
