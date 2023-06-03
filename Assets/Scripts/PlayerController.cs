@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public bool FacingLeft { get => facingLeft; set => facingLeft = value; }
+
     [SerializeField] private float moveSpeed;
 
     private PlayerControls playerControls;
@@ -12,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private Animator myAnimator;
     private SpriteRenderer mySpriteRenderer;
+
+    private bool facingLeft = false;
 
     private void Awake()
     {
@@ -60,10 +64,12 @@ public class PlayerController : MonoBehaviour
         {
             // flip player sprite
             mySpriteRenderer.flipX = true;
+            FacingLeft = true;
         } 
         else
         {
             mySpriteRenderer.flipX = false;
+            FacingLeft = false;
         }
     }
 }
