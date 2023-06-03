@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Knockback : MonoBehaviour
 {
-   
+    private Rigidbody2D rb;
 }
