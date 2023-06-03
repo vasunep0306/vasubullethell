@@ -48,9 +48,12 @@ public class Sword : MonoBehaviour
     }
 
    
+    public void DoneAttackingAnimEvent()
+    {
+        weaponCollider.gameObject.SetActive(false);
+    }
 
-
-    public void SwingUpFlipAnim()
+    public void SwingUpFlipAnimEvent()
     {
         slashAnim.gameObject.transform.rotation = Quaternion.Euler(-180f, 0f, 0f);
 
@@ -61,7 +64,7 @@ public class Sword : MonoBehaviour
         
     }
 
-    public void SwingDownFlipAnim()
+    public void SwingDownFlipAnimEvent()
     {
         slashAnim.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
 
