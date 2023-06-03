@@ -18,4 +18,9 @@ public class EnemyHealth : MonoBehaviour
         currentHealth -= damage;
         Debug.Log(currentHealth);
     }
+
+    private void DetectDeath()
+    {
+
+    }
 }
