@@ -10,6 +10,11 @@ public class EnemyHealth : MonoBehaviour
 
     private void Start()
     {
-        
+        currentHealth = startingHealth;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
     }
 }
