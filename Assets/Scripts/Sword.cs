@@ -41,10 +41,13 @@ public class Sword : MonoBehaviour
     private void Attack()
     {
         myAnimator.SetTrigger("Attack");
+        weaponCollider.gameObject.SetActive(true);
 
         slashAnim = Instantiate(slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity);
         slashAnim.transform.parent = this.transform.parent;
     }
+
+   
 
 
     public void SwingUpFlipAnim()
