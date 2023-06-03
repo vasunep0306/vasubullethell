@@ -7,7 +7,9 @@ public class PlayerController : MonoBehaviour
     public bool FacingLeft { get => facingLeft; set => facingLeft = value; }
     public static PlayerController Instance;
 
+    [SerializeField] private float dashSpeed;
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float dashTime;
 
     private PlayerControls playerControls;
 
@@ -26,6 +28,11 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    private void Start()
+    {
+        playerControls.Combat.Dash.performed += _ => Dash();
     }
 
     private void OnEnable()
@@ -74,5 +81,17 @@ public class PlayerController : MonoBehaviour
             mySpriteRenderer.flipX = false;
             FacingLeft = false;
         }
+    }
+
+    private void Dash()
+    {
+        moveSpeed *= dashSpeed;
+        StartCoroutine(EndDashRoutine());
+    }
+
+    private IEnumerator EndDashRoutine()
+    {
+        yield return new WaitForSeconds(dashTime);
+        moveSpeed /= dashSpeed;
     }
 }
