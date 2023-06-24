@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
     public bool FacingLeft { get => facingLeft;  }
-    public static PlayerController Instance;
+    
 
     [SerializeField] private float dashSpeed;
     [SerializeField] private float dashCD = .25f;
@@ -25,9 +25,10 @@ public class PlayerController : MonoBehaviour
     private bool isDashing = false;
     
 
-    private void Awake()
+    protected override void Awake()
     {
-        Instance = this;
+        base.Awake();
+
         playerControls = new PlayerControls();
         rb = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
