@@ -10,12 +10,12 @@ public class Sword : MonoBehaviour, IWeapon
     [SerializeField] private Transform weaponCollider; //The collider for the weapon.
     [SerializeField] private float swordAttackCD = .5f; //The cooldown time for the sword attack.
 
-    private PlayerControls playerControls; //The reference to the player controls.
+    
     private Animator myAnimator; //The reference to the animator component.
     private PlayerController playerController; //The reference to the player controller component.
     private ActiveWeapon activeWeapon; //The reference to the active weapon component.
 
-    private bool attackButtonDown, isAttacking = false; //The flags for the attack button state and the attacking state.
+    
 
     private GameObject slashAnim; //The reference to the slash animation game object.
 
@@ -25,45 +25,26 @@ public class Sword : MonoBehaviour, IWeapon
         playerController = GetComponentInParent<PlayerController>();
         activeWeapon = GetComponentInParent<ActiveWeapon>();
         myAnimator = GetComponent<Animator>();
-        playerControls = new PlayerControls(); //Initialize the player controls.
+        //playerControls = new PlayerControls(); //Initialize the player controls.
     }
 
-    private void OnEnable()
-    {
-        playerControls.Enable(); //Enable the player controls.
-    }
-
-    private void Start()
-    {
-        //Subscribe to the attack input events for starting and stopping attacking.
-        playerControls.Combat.Attack.started += _ => StartAttacking();
-        playerControls.Combat.Attack.canceled += _ => StopAttacking();
-    }
+   
 
     private void Update()
     {
         MouseFollowWithOffset(); //Call the method to make the weapon follow the mouse position with an offset.
-        Attack(); //Call the method to perform an attack if possible.
+       
     }
 
-    private void StartAttacking()
-    {
-        attackButtonDown = true; //Set the attack button flag to true.
-    }
-
-    private void StopAttacking()
-    {
-        attackButtonDown = false; //Set the attack button flag to false.
-    }
+    
 
 
 
     public void Attack()
     {
         //If the attack button is pressed and not currently attacking, perform an attack.
-        if (attackButtonDown && !isAttacking)
-        {
-            isAttacking = true; //Set the attacking flag to true.
+     
+           // isAttacking = true; //Set the attacking flag to true.
             myAnimator.SetTrigger("Attack"); //Trigger the attack animation.
             weaponCollider.gameObject.SetActive(true); //Enable the weapon collider.
 
@@ -72,7 +53,7 @@ public class Sword : MonoBehaviour, IWeapon
             slashAnim.transform.parent = this.transform.parent;
 
             StartCoroutine(AttackCDRoutine()); //Start a coroutine to wait for the cooldown time before attacking again.
-        }
+        
     }
 
 
@@ -126,6 +107,7 @@ public class Sword : MonoBehaviour, IWeapon
     private IEnumerator AttackCDRoutine()
     {
         yield return new WaitForSeconds(swordAttackCD); //Wait for the cooldown time.
-        isAttacking = false; //Set the attacking flag to false.
+        ActiveWeapon.Instance.ToggleIsAttacking(false);
+        //isAttacking = false; //Set the attacking flag to false.
     }
 }
