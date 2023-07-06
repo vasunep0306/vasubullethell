@@ -15,11 +15,28 @@ public class ActiveInventory : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(activeSlotIndexNum);
+        playerControls.Inventory.KeyBoard.performed += ctx => ToggleActiveSlot((int) ctx.ReadValue<float>());
     }
 
     private void OnEnable()
     {
         playerControls.Enable();
+    }
+
+    private void ToggleActiveSlot(int numValue)
+    {
+        ToggleActiveHighlight(numValue-1);
+    }
+
+    private void ToggleActiveHighlight(int indexNum)
+    {
+        activeSlotIndexNum = indexNum;
+
+        foreach(Transform inventorySlot in this.transform)
+        {
+            inventorySlot.GetChild(0).gameObject.SetActive(false);
+        }
+
+        this.transform.GetChild(activeSlotIndexNum).GetChild(0).gameObject.SetActive(true);
     }
 }
