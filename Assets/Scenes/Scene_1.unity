@@ -38491,7 +38491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b84800710b2d704f9d13982dcd3de0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponInfo: {fileID: 0}
+  weaponInfo: {fileID: 11400000, guid: aa6f4ce13c49be945917cf856135bd8d, type: 2}
 --- !u!1 &1465683954
 GameObject:
   m_ObjectHideFlags: 0
@@ -45431,7 +45431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b84800710b2d704f9d13982dcd3de0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponInfo: {fileID: 0}
+  weaponInfo: {fileID: 11400000, guid: 42577bee58fc36b44b02a668f7d5efad, type: 2}
 --- !u!1 &2101555696
 GameObject:
   m_ObjectHideFlags: 0
@@ -45523,7 +45523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b84800710b2d704f9d13982dcd3de0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponInfo: {fileID: 0}
+  weaponInfo: {fileID: 11400000, guid: 8228e8b887a4c684c8c0d55d1a87c7c0, type: 2}
 --- !u!1001 &804431106332303032
 PrefabInstance:
   m_ObjectHideFlags: 0
