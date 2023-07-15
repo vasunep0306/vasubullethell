@@ -6,29 +6,33 @@ using UnityEngine;
 public class Sword : MonoBehaviour, IWeapon
 {
     [SerializeField] private GameObject slashAnimPrefab; //The prefab for the slash animation.
-    [SerializeField] private Transform slashAnimSpawnPoint; //The spawn point for the slash animation.
-    [SerializeField] private Transform weaponCollider; //The collider for the weapon.
+
+    
     [SerializeField] private float swordAttackCD = .5f; //The cooldown time for the sword attack.
 
     
     private Animator myAnimator; //The reference to the animator component.
-    private PlayerController playerController; //The reference to the player controller component.
-    private ActiveWeapon activeWeapon; //The reference to the active weapon component.
+    private Transform slashAnimSpawnPoint; //The spawn point for the slash animation.
 
-    
+    private Transform weaponCollider; //The collider for the weapon.
+
 
     private GameObject slashAnim; //The reference to the slash animation game object.
 
     private void Awake()
     {
         //Get the components from the parent game object.
-        playerController = GetComponentInParent<PlayerController>();
-        activeWeapon = GetComponentInParent<ActiveWeapon>();
         myAnimator = GetComponent<Animator>();
         //playerControls = new PlayerControls(); //Initialize the player controls.
     }
 
-   
+    private void Start()
+    {
+        weaponCollider = PlayerController.Instance.GetWeaponCollider();
+        slashAnimSpawnPoint = PlayerController.Instance.GetSlashAnimSpawnPoint();
+    }
+
+
 
     private void Update()
     {
@@ -66,7 +70,7 @@ public class Sword : MonoBehaviour, IWeapon
     {
         slashAnim.gameObject.transform.rotation = Quaternion.Euler(-180f, 0f, 0f); //Flip the slash animation when swinging up. This is called by an animation event.
 
-        if (playerController.FacingLeft) //If facing left, also flip the sprite horizontally.
+        if (PlayerController.Instance.FacingLeft) //If facing left, also flip the sprite horizontally.
         {
             slashAnim.GetComponent<SpriteRenderer>().flipX = true;
         }
@@ -77,7 +81,7 @@ public class Sword : MonoBehaviour, IWeapon
     {
         slashAnim.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f); //Reset the slash animation when swinging down. This is called by an animation event.
 
-        if (playerController.FacingLeft) //If facing left, also flip the sprite horizontally.
+        if (PlayerController.Instance.FacingLeft) //If facing left, also flip the sprite horizontally.
         {
             slashAnim.GetComponent<SpriteRenderer>().flipX = true;
         }
@@ -88,17 +92,17 @@ public class Sword : MonoBehaviour, IWeapon
     private void MouseFollowWithOffset()
     {
         Vector3 mousePos = Input.mousePosition; //Get the mouse position in screen space.
-        Vector3 playerScreenPosition = Camera.main.WorldToScreenPoint(playerController.transform.position); //Get the player position in screen space.
+        Vector3 playerScreenPosition = Camera.main.WorldToScreenPoint(PlayerController.Instance.transform.position); //Get the player position in screen space.
         float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg; //Calculate the angle between the mouse and the origin in degrees.
 
         if (mousePos.x < playerScreenPosition.x) //If the mouse is on the left side of the player, rotate and flip the weapon accordingly.
         {
-            activeWeapon.transform.rotation = Quaternion.Euler(0f, -180f, angle);
+            ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0f, -180f, angle);
             weaponCollider.transform.rotation = Quaternion.Euler(0f, -180f, 0f);
         }
         else //If the mouse is on the right side of the player, rotate and reset the weapon accordingly.
         {
-            activeWeapon.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+            ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0f, 0f, angle);
             weaponCollider.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
     }

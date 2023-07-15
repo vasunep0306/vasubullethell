@@ -30451,6 +30451,8 @@ MonoBehaviour:
   moveSpeed: 4
   dashTime: 0.2
   myTrailRender: {fileID: 92541607}
+  weaponCollider: {fileID: 65219522}
+  slashAnimSpawnPoint: {fileID: 157119253}
 --- !u!50 &769766138
 Rigidbody2D:
   serializedVersion: 4
@@ -43542,7 +43544,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1a9e398331fce4a96f8f19057c9890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentActiveWeapon: {fileID: 0}
 --- !u!1 &1601953587
 GameObject:
   m_ObjectHideFlags: 3
