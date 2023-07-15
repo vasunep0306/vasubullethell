@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 5944892969912923448}
   - component: {fileID: 3127692567301340199}
   - component: {fileID: 8146557458054383551}
+  - component: {fileID: 7606844770214764173}
   m_Layer: 0
   m_Name: Staff
   m_TagString: Untagged
@@ -116,7 +117,7 @@ Transform:
   m_Children:
   - {fileID: 6523664442605409573}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3127692567301340199
 MonoBehaviour:
@@ -130,6 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 517ee20da3d7c404a960ff5606b53d91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponInfo: {fileID: 11400000, guid: 8228e8b887a4c684c8c0d55d1a87c7c0, type: 2}
 --- !u!212 &8146557458054383551
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -182,3 +184,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &7606844770214764173
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5898133327264052878}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 559bf80cbf6a3b44c8cd385f72c78a5a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

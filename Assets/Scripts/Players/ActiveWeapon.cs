@@ -7,6 +7,7 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
     public MonoBehaviour CurrentActiveWeapon { get; private set; }
     private PlayerControls playerControls; //The reference to the player controls.
     private bool attackButtonDown, isAttacking = false; //The flags for the attack button state and the attacking state.
+    private float timeBetweenAttacks;
 
     protected override void Awake()
     {
@@ -25,6 +26,7 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
         //Subscribe to the attack input events for starting and stopping attacking.
         playerControls.Combat.Attack.started += _ => StartAttacking();
         playerControls.Combat.Attack.canceled += _ => StopAttacking();
+        AttackCooldown();
     }
 
     private void Update()
@@ -35,6 +37,9 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
     public void NewWeapon(MonoBehaviour newWeapon)
     {
         CurrentActiveWeapon = newWeapon;
+        AttackCooldown();
+        timeBetweenAttacks = (CurrentActiveWeapon as IWeapon).GetWeaponInfo().weaponCooldown;
+
     }
 
 
@@ -44,16 +49,26 @@ public class ActiveWeapon : Singleton<ActiveWeapon>
     }
 
 
-    public void ToggleIsAttacking(bool value)
+    private void AttackCooldown()
     {
-        isAttacking = value;
+        isAttacking = true;
+        StopAllCoroutines();
+        StartCoroutine(TimeBetweenAttacksRoutine());
     }
+
+    private IEnumerator TimeBetweenAttacksRoutine()
+    {
+        yield return new WaitForSeconds(timeBetweenAttacks);
+        isAttacking = false;
+    }
+
+
 
     private void Attack()
     {
         if(attackButtonDown && !isAttacking)
         {
-            isAttacking = true;
+            AttackCooldown();
             (CurrentActiveWeapon as IWeapon).Attack();
         }
         

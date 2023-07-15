@@ -7,10 +7,9 @@ public class Sword : MonoBehaviour, IWeapon
 {
     [SerializeField] private GameObject slashAnimPrefab; //The prefab for the slash animation.
 
-    
-    [SerializeField] private float swordAttackCD = .5f; //The cooldown time for the sword attack.
+    [SerializeField] private WeaponInfo weaponInfo;
 
-    
+
     private Animator myAnimator; //The reference to the animator component.
     private Transform slashAnimSpawnPoint; //The spawn point for the slash animation.
 
@@ -46,18 +45,12 @@ public class Sword : MonoBehaviour, IWeapon
 
     public void Attack()
     {
-        //If the attack button is pressed and not currently attacking, perform an attack.
-     
-           // isAttacking = true; //Set the attacking flag to true.
             myAnimator.SetTrigger("Attack"); //Trigger the attack animation.
             weaponCollider.gameObject.SetActive(true); //Enable the weapon collider.
 
             //Instantiate and parent the slash animation game object at the spawn point position.
             slashAnim = Instantiate(slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity);
             slashAnim.transform.parent = this.transform.parent;
-
-            StartCoroutine(AttackCDRoutine()); //Start a coroutine to wait for the cooldown time before attacking again.
-        
     }
 
 
@@ -107,11 +100,10 @@ public class Sword : MonoBehaviour, IWeapon
         }
     }
 
-
-    private IEnumerator AttackCDRoutine()
+    public WeaponInfo GetWeaponInfo()
     {
-        yield return new WaitForSeconds(swordAttackCD); //Wait for the cooldown time.
-        ActiveWeapon.Instance.ToggleIsAttacking(false);
-        //isAttacking = false; //Set the attacking flag to false.
+        return weaponInfo;
     }
+
+
 }
