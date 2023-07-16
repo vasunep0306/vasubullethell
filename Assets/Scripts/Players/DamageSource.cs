@@ -9,10 +9,10 @@ public class DamageSource : MonoBehaviour
     private void Start()
     {
 
-        MonoBehaviour currenActiveWeapon = ActiveWeapon.Instance.CurrentActiveWeapon;
-        if(currenActiveWeapon)
+        MonoBehaviour currentActiveWeapon = ActiveWeapon.Instance.CurrentActiveWeapon;
+        if(currentActiveWeapon)
         {
-            damageAmount = (currenActiveWeapon as IWeapon).GetWeaponInfo().weaponDamage;
+            damageAmount = (currentActiveWeapon as IWeapon).GetWeaponInfo().weaponDamage;
         }
        
     }
