@@ -31715,6 +31715,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ghost (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5970798237556390831, guid: 7b2b10e3c9b81f24b9d716949f4f6172, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -36869,6 +36873,10 @@ PrefabInstance:
     - target: {fileID: 5970798237556390831, guid: 7b2b10e3c9b81f24b9d716949f4f6172, type: 3}
       propertyPath: m_Name
       value: Ghost (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5970798237556390831, guid: 7b2b10e3c9b81f24b9d716949f4f6172, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -42896,6 +42904,10 @@ PrefabInstance:
     - target: {fileID: 5970798237556390831, guid: 7b2b10e3c9b81f24b9d716949f4f6172, type: 3}
       propertyPath: m_Name
       value: Ghost (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5970798237556390831, guid: 7b2b10e3c9b81f24b9d716949f4f6172, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
