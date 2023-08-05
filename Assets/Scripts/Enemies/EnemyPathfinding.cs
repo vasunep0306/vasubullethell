@@ -37,5 +37,11 @@ public class EnemyPathfinding : MonoBehaviour
         moveDir = targetDir;
     }
 
-   
+    public void StopMoving()
+    {
+        moveDir = Vector3.zero;
+    }
+
+
+
 }
