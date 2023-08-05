@@ -354,3 +354,6 @@ MonoBehaviour:
   restTime: 0.5
   burstCount: 5
   timeBetweenBursts: 0.3
+  projectilesPerBurst: 6
+  angleSpread: 0
+  startingDistance: 0.1
