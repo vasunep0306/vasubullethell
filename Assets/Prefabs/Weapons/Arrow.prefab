@@ -291,6 +291,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 22
   particleOnHitPrefabVFX: {fileID: 4216327958182355430, guid: dd9bf0b90ff2d2a43be12a19ba047399, type: 3}
+  projectileRange: 10
+  isEnemyProjectile: 0
 --- !u!114 &7187014354953299640
 MonoBehaviour:
   m_ObjectHideFlags: 0
