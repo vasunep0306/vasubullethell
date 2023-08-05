@@ -31,21 +31,44 @@ public class Projectile : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Handles the collision of the object with other objects.
+    /// </summary>
+    /// <param name="other">The other collider involved in the collision.</param>
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // Get the EnemyHealth, Indestructable, and PlayerHealth components from the other object
         EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
         Indestructable indestructible = other.gameObject.GetComponent<Indestructable>();
         PlayerHealth player = other.gameObject.GetComponent<PlayerHealth>();
+
+        // If the other object is not a trigger and has one of the above components
         if (!other.isTrigger && (enemyHealth || indestructible || player))
         {
-            if (player && isEnemyProjectile)
+            // If the other object is a player and this is an enemy projectile, or if the other object is an enemy and this is not an enemy projectile
+            if ((player && isEnemyProjectile) || (enemyHealth && !isEnemyProjectile))
             {
-                player.TakeDamage(1, transform);
+                // Make the player take damage
+                player?.TakeDamage(1, transform);
+
+                // Instantiate a particle effect at this position
+                Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
+
+                // Destroy this object
+                Destroy(gameObject);
             }
-            Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
-            Destroy(gameObject);
+            // If the other object is indestructible
+            else if (!other.isTrigger && indestructible)
+            {
+                // Instantiate a particle effect at this position
+                Instantiate(particleOnHitPrefabVFX, transform.position, transform.rotation);
+
+                // Destroy this object
+                Destroy(gameObject);
+            }
         }
     }
+
 
     private void MoveProjectile()
     {
