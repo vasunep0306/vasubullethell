@@ -30,6 +30,12 @@ public class Projectile : MonoBehaviour
         this.projectileRange = projectileRange;
     }
 
+    public void UpdateMoveSpeed(float moveSpeed)
+    {
+        this.moveSpeed = moveSpeed;
+    }
+
+
 
     /// <summary>
     /// Handles the collision of the object with other objects.
