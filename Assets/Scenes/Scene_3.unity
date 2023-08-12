@@ -43445,8 +43445,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3479664346291690587, guid: 7b2b10e3c9b81f24b9d716949f4f6172, type: 3}
+      propertyPath: burstCount
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3479664346291690587, guid: 7b2b10e3c9b81f24b9d716949f4f6172, type: 3}
       propertyPath: angleSpread
-      value: 180
+      value: 97
+      objectReference: {fileID: 0}
+    - target: {fileID: 3479664346291690587, guid: 7b2b10e3c9b81f24b9d716949f4f6172, type: 3}
+      propertyPath: startingDistance
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3479664346291690587, guid: 7b2b10e3c9b81f24b9d716949f4f6172, type: 3}
+      propertyPath: timeBetweenBursts
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5970798237556390831, guid: 7b2b10e3c9b81f24b9d716949f4f6172, type: 3}
       propertyPath: m_Name

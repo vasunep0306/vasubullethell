@@ -28,40 +28,84 @@ public class Shooter : MonoBehaviour, IEnemy
         }
     }
 
+    /// <summary>
+    /// Coroutine for shooting projectiles in bursts.
+    /// </summary>
+    /// <returns>IEnumerator for coroutine.</returns>
     private IEnumerator ShootRoutine()
     {
         isShooting = true;
 
-        float startAngle, currentAngle, angleStep;
+        // Initialize variables for targeting cone of influence
+        float startAngle, currentAngle, angleStep, endAngle;
+        float timeBetweenProjectiles = 0f;
 
-        TargetConeOfInfluence(out startAngle, out currentAngle, out angleStep);
+        // Calculate initial targeting cone of influence
+        TargetConeOfInfluence(out startAngle, out currentAngle, out angleStep, out endAngle);
 
+        // Calculate time between projectiles if staggering is enabled
+        if (stagger) { timeBetweenProjectiles = timeBetweenBursts / projectilesPerBurst; }
+
+        // Loop through each burst
         for (int i = 0; i < burstCount; i++)
         {
+            // Recalculate targeting cone of influence if not oscillating
+            if (!oscillate)
+            {
+                TargetConeOfInfluence(out startAngle, out currentAngle, out angleStep, out endAngle);
+            }
+
+            // Recalculate targeting cone of influence if oscillating and on even numbered burst
+            if (oscillate && i % 2 != 1)
+            {
+                TargetConeOfInfluence(out startAngle, out currentAngle, out angleStep, out endAngle);
+            }
+            // Reverse targeting cone of influence if oscillating and on odd numbered burst
+            else if (oscillate)
+            {
+                currentAngle = endAngle;
+                endAngle = startAngle;
+                startAngle = currentAngle;
+                angleStep *= -1;
+            }
+
+            // Loop through each projectile in burst
             for (int j = 0; j < projectilesPerBurst; j++)
             {
+                // Find spawn position for projectile
                 Vector2 pos = FindBulletSpawnPos(currentAngle);
 
+                // Instantiate projectile and set its direction
                 GameObject newBullet = Instantiate(bulletPrefab, pos, Quaternion.identity);
                 newBullet.transform.right = newBullet.transform.position - transform.position;
 
+                // Update projectile move speed if it has a Projectile component
                 if (newBullet.TryGetComponent(out Projectile projectile))
                 {
                     projectile.UpdateMoveSpeed(bulletMoveSpeed);
                 }
 
+                // Increment current angle by angle step
                 currentAngle += angleStep;
+
+                // Wait between projectiles if staggering is enabled
+                if (stagger) { yield return new WaitForSeconds(timeBetweenProjectiles); }
             }
 
+            // Reset current angle to start angle
             currentAngle = startAngle;
 
-            yield return new WaitForSeconds(timeBetweenBursts);
-            TargetConeOfInfluence(out startAngle, out currentAngle, out angleStep);
+            // Wait between bursts if not staggering
+            if (!stagger) { yield return new WaitForSeconds(timeBetweenBursts); }
         }
 
+        // Wait rest time before ending shooting routine
         yield return new WaitForSeconds(restTime);
         isShooting = false;
     }
+
+
+
 
 
     /// <summary>
@@ -70,7 +114,7 @@ public class Shooter : MonoBehaviour, IEnemy
     /// <param name="startAngle">The start angle of the cone of influence.</param>
     /// <param name="currentAngle">The current angle of the cone of influence.</param>
     /// <param name="angleStep">The angle step between each projectile in a burst.</param>
-    private void TargetConeOfInfluence(out float startAngle, out float currentAngle, out float angleStep)
+    private void TargetConeOfInfluence(out float startAngle, out float currentAngle, out float angleStep, out float endAngle)
     {
         // Calculate the direction from this object to the player
         Vector2 targetDirection = PlayerController.Instance.transform.position - transform.position;
@@ -80,7 +124,7 @@ public class Shooter : MonoBehaviour, IEnemy
 
         // Set the start, current, and end angles to the target angle
         startAngle = targetAngle;
-        float endAngle = targetAngle;
+        endAngle = targetAngle;
         currentAngle = targetAngle;
 
         // Initialize halfAngleSpread and angleStep to 0

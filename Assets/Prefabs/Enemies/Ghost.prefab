@@ -357,3 +357,5 @@ MonoBehaviour:
   projectilesPerBurst: 6
   angleSpread: 0
   startingDistance: 0.1
+  stagger: 0
+  oscillate: 0
