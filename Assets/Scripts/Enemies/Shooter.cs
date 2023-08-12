@@ -5,17 +5,39 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour, IEnemy
 {
-    
+
+    // Projectile settings
+    [Header("Projectile Settings")]
+    [Tooltip("Prefab for the projectile to be shot.")]
     [SerializeField] private GameObject bulletPrefab;
+    [Tooltip("Speed at which the projectile moves.")]
     [SerializeField] private float bulletMoveSpeed;
+
+    // Shooting settings
+    [Header("Shooting Settings")]
+    [Tooltip("Time to wait after shooting before shooting again.")]
     [SerializeField] private float restTime = 1f;
+    [Tooltip("Number of bursts to shoot.")]
     [SerializeField] private int burstCount;
+    [Tooltip("Time to wait between bursts.")]
     [SerializeField] private float timeBetweenBursts;
+    [Tooltip("Number of projectiles to shoot per burst.")]
     [SerializeField] private int projectilesPerBurst;
+
+    // Targeting settings
+    [Header("Targeting Settings")]
+    [Tooltip("Angle spread of projectiles in degrees.")]
     [SerializeField] [Range(0, 359)] private float angleSpread;
+    [Tooltip("Distance from shooter at which projectiles spawn.")]
     [SerializeField] private float startingDistance = 0.1f;
+
+    // Burst settings
+    [Header("Burst Settings")]
+    [Tooltip("Whether to stagger the projectiles within a burst.")]
     [SerializeField] private bool stagger;
+    [Tooltip("Whether to oscillate the angle spread between bursts.")]
     [SerializeField] private bool oscillate;
+
 
 
     private bool isShooting = false;
@@ -27,6 +49,33 @@ public class Shooter : MonoBehaviour, IEnemy
             StartCoroutine(ShootRoutine());
         }
     }
+
+    /// <summary>
+    /// Validates the values of the script's public variables in the Unity Editor.
+    /// </summary>
+    private void OnValidate()
+    {
+        // Ensure stagger is enabled if oscillate is enabled
+        if (oscillate) { stagger = true; }
+        // Ensure stagger is disabled if oscillate is disabled
+        if (!oscillate) { stagger = false; }
+        // Ensure projectilesPerBurst is at least 1
+        if (projectilesPerBurst < 1) { projectilesPerBurst = 1; }
+        // Ensure burstCount is at least 1
+        if (burstCount < 1) { burstCount = 1; }
+        // Ensure timeBetweenBursts is at least 0.1
+        if (timeBetweenBursts < 0.1f) { timeBetweenBursts = 0.1f; }
+        // Ensure restTime is at least 0.1
+        if (restTime < 0.1f) { restTime = 0.1f; }
+        // Ensure startingDistance is at least 0.1
+        if (startingDistance < 0.1f) { startingDistance = 0.1f; }
+        // Set projectilesPerBurst to 1 if angleSpread is 0
+        if (angleSpread == 0) { projectilesPerBurst = 1; }
+        // Ensure bulletMoveSpeed is greater than 0
+        if (bulletMoveSpeed <= 0) { bulletMoveSpeed = 0.1f; }
+    }
+
+
 
     /// <summary>
     /// Coroutine for shooting projectiles in bursts.
