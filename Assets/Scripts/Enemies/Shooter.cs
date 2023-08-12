@@ -14,6 +14,9 @@ public class Shooter : MonoBehaviour, IEnemy
     [SerializeField] private int projectilesPerBurst;
     [SerializeField] [Range(0, 359)] private float angleSpread;
     [SerializeField] private float startingDistance = 0.1f;
+    [SerializeField] private bool stagger;
+    [SerializeField] private bool oscillate;
+
 
     private bool isShooting = false;
 
