@@ -8,6 +8,7 @@ public class GrapeProjectile : MonoBehaviour
     [SerializeField] private AnimationCurve animCurve;
     [SerializeField] private float heightY = 3f;
     [SerializeField] private GameObject grapeProjectileShadow;
+    [SerializeField] private GameObject splatterPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -54,7 +55,7 @@ public class GrapeProjectile : MonoBehaviour
             grapeShadow.transform.position = Vector2.Lerp(startPosition, endPosition, linearT);
             yield return null;
         }
-
+        Instantiate(splatterPrefab, transform.position, Quaternion.identity);
         Destroy(grapeShadow);
     }
 
