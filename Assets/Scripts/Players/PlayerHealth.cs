@@ -69,6 +69,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
     {
         if (currentHealth <= 0)
         {
+            currentHealth = 0;
             Debug.Log("Player death");
         }
     }
