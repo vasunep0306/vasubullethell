@@ -103,7 +103,7 @@ public class Pickups : MonoBehaviour
                 // TODO: Implement logic for stamina globe pickup
                 break;
             case PickupType.HealthGlobe:
-                // TODO: Implement logic for health globe pickup
+                PlayerHealth.Instance.HealPlayer();
                 break;
         }
     }
