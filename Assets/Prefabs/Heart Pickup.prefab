@@ -10,13 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 415206116705359421}
   - component: {fileID: 3084090116335008274}
-  - component: {fileID: 6701949069886579737}
   - component: {fileID: 7499022886715111748}
   - component: {fileID: 8712745608358965409}
   - component: {fileID: 1848369106537523183}
-  - component: {fileID: -3097644278228819463}
   m_Layer: 0
-  m_Name: Gold Coin
+  m_Name: Heart Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1009117598, guid: bd25bffa07681e1428352fb61f2f2d11, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 676068ffe178bc946a145459da85be61, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -89,27 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &6701949069886579737
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8848008386307745817}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 07a95c539554c5946a5b8bc5a3458d43, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!70 &7499022886715111748
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -213,15 +190,3 @@ MonoBehaviour:
     m_RotationOrder: 4
   heightY: 1.5
   popDuration: 0.5
---- !u!114 &-3097644278228819463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8848008386307745817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e0c875ffea083948b22bc69e1fb98f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
