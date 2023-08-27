@@ -5,6 +5,14 @@ using UnityEngine;
 public class Pickups : MonoBehaviour
 {
 
+    private enum PickupType
+    {
+        GoldCoin,
+        StaminaGlobe,
+        HealthGlobe,
+    }
+
+    [SerializeField] private PickupType pickupType;
     [SerializeField] private float pickUpDistance = 5f;
     [SerializeField] private float accelartionRate = .2f;
     [SerializeField] private float moveSpeed = 3f;
