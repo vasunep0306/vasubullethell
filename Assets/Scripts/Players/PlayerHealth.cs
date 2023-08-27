@@ -28,6 +28,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
     private void Start()
     {
         currentHealth = maxHealth;
+        UpdateHealthSlider();
     }
 
     private void OnCollisionStay2D(Collision2D other)
@@ -42,7 +43,8 @@ public class PlayerHealth : Singleton<PlayerHealth>
 
     public void HealPlayer()
     {
-
+        currentHealth += 1;
+        UpdateHealthSlider();
     }
 
     public void TakeDamage(int damageAmount, Transform hitTransform)
@@ -56,7 +58,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
         canTakeDamage = false;
         currentHealth -= damageAmount;
         StartCoroutine(DamageRecoveryRoutine());
-
+        UpdateHealthSlider();
     }
 
   
