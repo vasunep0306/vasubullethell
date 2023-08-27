@@ -62,6 +62,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
         currentHealth -= damageAmount;
         StartCoroutine(DamageRecoveryRoutine());
         UpdateHealthSlider();
+        CheckIfPlayerDead();
     }
 
     
