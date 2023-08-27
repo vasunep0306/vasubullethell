@@ -92,4 +92,9 @@ public class Pickups : MonoBehaviour
 
     }
 
+    private void DetectPickupType()
+    {
+
+    }
+
 }
