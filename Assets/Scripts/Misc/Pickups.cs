@@ -94,7 +94,19 @@ public class Pickups : MonoBehaviour
 
     private void DetectPickupType()
     {
-
+        switch (pickupType)
+        {
+            case PickupType.GoldCoin:
+                // TODO: Implement logic for gold coin pickup
+                break;
+            case PickupType.StaminaGlobe:
+                // TODO: Implement logic for stamina globe pickup
+                break;
+            case PickupType.HealthGlobe:
+                // TODO: Implement logic for health globe pickup
+                break;
+        }
     }
+
 
 }
