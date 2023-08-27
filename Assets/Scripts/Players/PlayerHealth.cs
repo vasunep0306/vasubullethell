@@ -64,7 +64,14 @@ public class PlayerHealth : Singleton<PlayerHealth>
         UpdateHealthSlider();
     }
 
-  
+    
+    private void CheckIfPlayerDead()
+    {
+        if (currentHealth <= 0)
+        {
+            Debug.Log("Player death");
+        }
+    }
 
     private IEnumerator DamageRecoveryRoutine()
     {
