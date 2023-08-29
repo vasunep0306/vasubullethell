@@ -86,7 +86,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
     {
         if (healthSlider == null)
         {
-            healthSlider = GameObject.Find("Health Slider").GetComponent<Slider>();
+            healthSlider = GameObject.Find(HEALTH_SLIDER_TEXT).GetComponent<Slider>();
         }
 
         healthSlider.maxValue = maxHealth;
