@@ -30,7 +30,9 @@ public class Stamina : Singleton<Stamina>
     public void UseStamina()
     {
         CurrentStamina--;
+        UpdateStaminaImages();
     }
+    
 
     public void RefreshStamina()
     {
@@ -38,6 +40,7 @@ public class Stamina : Singleton<Stamina>
         {
             CurrentStamina++;
         }
+        UpdateStaminaImages();
     }
 
     private void UpdateStaminaImages()
