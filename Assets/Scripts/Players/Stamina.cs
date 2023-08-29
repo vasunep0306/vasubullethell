@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Stamina : MonoBehaviour
+public class Stamina : Singleton<Stamina>
 {
-    // Start is called before the first frame update
-    void Start()
+    public int CurrentStamina { get; private set; }
+
+    private int startingStamina = 3;
+    private int maxStamina;
+
+    protected override void Awake()
     {
-        
+        base.Awake();
+
+        maxStamina = startingStamina;
+        CurrentStamina = maxStamina;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
