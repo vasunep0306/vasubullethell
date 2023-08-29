@@ -447,6 +447,7 @@ GameObject:
   - component: {fileID: 3259002903429226446}
   - component: {fileID: 8352589060178387279}
   - component: {fileID: 5353343002110414583}
+  - component: {fileID: 3069016660468094884}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -471,7 +472,7 @@ Transform:
   - {fileID: 1423166754610500555}
   - {fileID: 8445138027546832603}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &622285869419937114
 SpriteRenderer:
@@ -681,3 +682,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whiteFlashMat: {fileID: 2100000, guid: 2f4af8f958b97b6498ce79aeeacecd36, type: 2}
   restoreDefaultMatTime: 0.2
+--- !u!114 &3069016660468094884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8599750447831242342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7080513630f88d1499216368b94828b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
