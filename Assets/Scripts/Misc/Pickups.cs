@@ -103,6 +103,7 @@ public class Pickups : MonoBehaviour
                 break;
             case PickupType.StaminaGlobe:
                 // TODO: Implement logic for stamina globe pickup
+                Stamina.Instance.RefreshStamina();
                 Debug.Log("Implement logic for stamina globe pickup");
                 break;
             case PickupType.HealthGlobe:
