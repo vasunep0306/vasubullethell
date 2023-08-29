@@ -8,6 +8,7 @@ public class Stamina : Singleton<Stamina>
     public int CurrentStamina { get; private set; }
 
     [SerializeField] private Sprite fullStaminaImage, emptyStaminaImage;
+    [SerializeField] private int timeBetweenStaminaRefresh = 3;
 
     private Transform staminaContainer;
     private int startingStamina = 3;
@@ -43,6 +44,15 @@ public class Stamina : Singleton<Stamina>
         UpdateStaminaImages();
     }
 
+    private IEnumerator RefreshStaminaRoutine()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(timeBetweenStaminaRefresh);
+            RefreshStamina();
+        }
+    }
+
     private void UpdateStaminaImages()
     {
         for (int i = 0; i < maxStamina; i++)
@@ -55,6 +65,12 @@ public class Stamina : Singleton<Stamina>
             {
                 staminaContainer.GetChild(i).GetComponent<Image>().sprite = emptyStaminaImage;
             }
+        }
+
+        if(CurrentStamina < maxStamina)
+        {
+            StopAllCoroutines();
+            StartCoroutine(RefreshStaminaRoutine());
         }
     }
 
