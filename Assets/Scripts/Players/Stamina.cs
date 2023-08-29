@@ -7,6 +7,8 @@ public class Stamina : Singleton<Stamina>
 {
     public int CurrentStamina { get; private set; }
 
+    [SerializeField] private Sprite fullStaminaImage, emptyStaminaImage;
+
     private int startingStamina = 3;
     private int maxStamina;
 
