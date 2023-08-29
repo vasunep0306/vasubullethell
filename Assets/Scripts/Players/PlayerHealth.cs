@@ -9,6 +9,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
     [SerializeField] private int maxHealth = 3;
     [SerializeField] private float knockBackThrustAmount = 10f;
     [SerializeField] private float damageRecoveryTime = 1f;
+    const string HEALTH_SLIDER_TEXT = "Health Slider";
 
     private Slider healthSlider;
     private Knockback knockback;
