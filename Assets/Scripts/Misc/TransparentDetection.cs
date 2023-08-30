@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 public class TransparentDetection : MonoBehaviour
 {
     [Range(0,1)]
-    [SerializeField] private float transparancyAmount = 0.8f;
+    [SerializeField] private float transparencyAmount = 0.8f;
     [SerializeField] private float fadeTime = 0.4f;
 
     private SpriteRenderer spriteRenderer;
@@ -18,33 +18,36 @@ public class TransparentDetection : MonoBehaviour
         tilemap = GetComponent<Tilemap>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if(collision.gameObject.GetComponent<PlayerController>())
+        if (other.gameObject.GetComponent<PlayerController>())
         {
-            if(spriteRenderer)
+            if (spriteRenderer)
             {
-                StartCoroutine(FadeRoutine(spriteRenderer, fadeTime, spriteRenderer.color.a, transparancyAmount));
-            } 
+                StartCoroutine(FadeRoutine(spriteRenderer, fadeTime, spriteRenderer.color.a, transparencyAmount));
+            }
             else if (tilemap)
             {
-                StartCoroutine(FadeRoutine(tilemap, fadeTime, tilemap.color.a, transparancyAmount));
+                StartCoroutine(FadeRoutine(tilemap, fadeTime, tilemap.color.a, transparencyAmount));
             }
-            
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        if (spriteRenderer)
+        if (other.gameObject.GetComponent<PlayerController>())
         {
-            StartCoroutine(FadeRoutine(spriteRenderer, fadeTime, spriteRenderer.color.a, 1f));
-        }
-        else if (tilemap)
-        {
-            StartCoroutine(FadeRoutine(tilemap, fadeTime, tilemap.color.a, 1f));
+            if (spriteRenderer)
+            {
+                StartCoroutine(FadeRoutine(spriteRenderer, fadeTime, spriteRenderer.color.a, 1f));
+            }
+            else if (tilemap)
+            {
+                StartCoroutine(FadeRoutine(tilemap, fadeTime, tilemap.color.a, 1f));
+            }
         }
     }
+
 
     private IEnumerator FadeRoutine(SpriteRenderer spriteRenderer, float fadeTime, float startValue, float targetTransparancy)
     {
