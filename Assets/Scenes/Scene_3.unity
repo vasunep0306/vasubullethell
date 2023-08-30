@@ -39597,6 +39597,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 679213014882437197, guid: 0529d835e554d28459863bc4808447a5, type: 3}
+      propertyPath: sceneToLoad
+      value: Town Scene
+      objectReference: {fileID: 0}
     - target: {fileID: 2866265486540094154, guid: 0529d835e554d28459863bc4808447a5, type: 3}
       propertyPath: m_RootOrder
       value: 9
