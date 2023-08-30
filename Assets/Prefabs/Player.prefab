@@ -696,3 +696,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fullStaminaImage: {fileID: 21300000, guid: 9d5174a984f14c44a86f120f8a60a8b3, type: 3}
   emptyStaminaImage: {fileID: 21300000, guid: fdbc4e265fe483547a71e42b796f8740, type: 3}
+  timeBetweenStaminaRefresh: 3
