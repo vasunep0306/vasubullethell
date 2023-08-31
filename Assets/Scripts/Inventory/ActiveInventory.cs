@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActiveInventory : MonoBehaviour
+public class ActiveInventory : Singleton<ActiveInventory>
 {
     /// <summary>
     /// This class handles the active inventory slot for the player.
@@ -11,8 +11,9 @@ public class ActiveInventory : MonoBehaviour
 
     private PlayerControls playerControls; //The reference to the player controls.
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         playerControls = new PlayerControls(); //Initialize the player controls.
     }
 
@@ -21,13 +22,18 @@ public class ActiveInventory : MonoBehaviour
         //Subscribe to the keyboard input event for changing the active slot.
         playerControls.Inventory.KeyBoard.performed += ctx => ToggleActiveSlot((int)ctx.ReadValue<float>());
 
-        ToggleActiveHighlight(0);
     }
 
     private void OnEnable()
     {
         playerControls.Enable(); //Enable the player controls.
     }
+
+    public void EquipStartingWeapon()
+    {
+        ToggleActiveHighlight(0);
+    }
+
 
     private void ToggleActiveSlot(int numValue)
     {
@@ -73,9 +79,6 @@ public class ActiveInventory : MonoBehaviour
         ActiveWeapon.Instance.transform.rotation = Quaternion.Euler(0, 0, 0);
         newWeapon.transform.parent = ActiveWeapon.Instance.transform;
         ActiveWeapon.Instance.NewWeapon(newWeapon.GetComponent<MonoBehaviour>());
-
-
-
 
     }
 }
