@@ -45,7 +45,7 @@ public class Pickups : MonoBehaviour
         else
         {
             moveDir = Vector3.zero;
-            moveSpeed = 0;
+            moveSpeed = 0f;
         }
 
     }
@@ -106,6 +106,8 @@ public class Pickups : MonoBehaviour
                 break;
             case PickupType.HealthGlobe:
                 PlayerHealth.Instance.HealPlayer();
+                break;
+            default:
                 break;
         }
     }
